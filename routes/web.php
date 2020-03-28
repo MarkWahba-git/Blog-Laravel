@@ -16,9 +16,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
-Route::get('/employees', 'EmployeeController@index')->name('employees.index');  /*asl about the name here */
-Route::get('/employees/{id}/edit','EmployeeController@edit')->name('employees.edit');
-Route::get('/employees/{id}/delete','EmployeeController@destroy')->name('employees.destroy');
-Route::get('/create','EmployeeController@create')->name('employees.create');
-Route::post('/create','EmployeeController@store')->name('employees.store');
-Route::post('/employee/update','EmployeeController@update')->name('employees.update');
+Route::get('/posts', 'PostController@index')->name('post.index');  /*asl about the name here */
+Route::get('/posts/{id}/edit','PostController@edit')->name('post.edit');
+Route::get('/posts/{id}/delete','PostController@destroy')->name('post.destroy');
+Route::get('/create','PostController@create')->name('post.create');
+Route::post('/create','PostController@store')->name('post.store');
+Route::post('/employee/update','PostController@update')->name('post.update');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
