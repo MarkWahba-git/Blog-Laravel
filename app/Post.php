@@ -8,8 +8,9 @@ use Cviebrock\EloquentSluggable\Sluggable;
 
 class Post extends Model
 {
-   use Sluggable;
-     public function user(){
+    use Sluggable;
+    
+  public function user(){
         return $this->belongsTo('App\User');
 
 
