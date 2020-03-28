@@ -15,13 +15,29 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-})->name('home');
-Route::get('/posts', 'PostController@index')->name('post.index');  /*asl about the name here */
-Route::get('/posts/{id}/edit','PostController@edit')->name('post.edit');
-Route::get('/posts/{id}/delete','PostController@destroy')->name('post.destroy');
-Route::get('/create','PostController@create')->name('post.create');
-Route::post('/create','PostController@store')->name('post.store');
-Route::post('/employee/update','PostController@update')->name('post.update');
-Auth::routes();
+});
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::middleware('auth')->group(function () {
+    Route::get('/posts','PostController@index')->name('posts.index') ;
+
+
+    Route::get('/posts/create','PostController@create')->name('posts.create') ;
+    
+    Route::post('/posts','PostController@store')->name('posts.store') ;
+    
+    Route::get('/posts/{post}','PostController@show')->name('posts.show') ;
+    
+    
+    
+    Route::get('/posts/{post}/edit','PostController@edit')->name('posts.edit') ;
+    
+    
+    Route::put('/posts/{post}','PostController@update')->name('posts.update') ;
+    
+    Route::delete('/posts/{post}','PostController@delete')->name('posts.delete') ;
+    
+    Route::get('/home', 'HomeController@index')->name('home') ;
+});
+
+
+Auth::routes();
